@@ -73,7 +73,7 @@ text-decoration:none;
 
 <h2>AnimeVerse Login</h2>
 
-<input type="text" id="username" placeholder="Username">
+<<input type="email" id="username" placeholder="Email">
 
 <div style="position:relative; margin-bottom:15px;">
 
@@ -97,41 +97,54 @@ style="position:absolute; right:15px; top:50%; transform:translateY(-50%); curso
 
 </div>
 
-<script>
+<script type="module">
 
-function login(){
+import { auth } from "./firebase.js";
 
-const username=document.getElementById("username").value;
-const password=document.getElementById("password").value;
+import {
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-if(username==="admin" && password==="123456"){
+window.login = async function () {
 
-alert("Login Successful!");
+    const email =
+        document.getElementById("username").value.trim();
 
-window.location.href="index.html";
+    const password =
+        document.getElementById("password").value;
 
-}else{
+    try {
 
-alert("Wrong username or password!");
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        alert("Login Successful");
+
+        window.location.href = "admin.html";
+
+    } catch (e) {
+
+        alert(e.message);
+
+    }
 
 }
 
-}
-function togglePassword(){
+window.togglePassword = function () {
 
-const pass=document.getElementById("password");
+    const pass =
+        document.getElementById("password");
 
-if(pass.type==="password"){
-
-pass.type="text";
-
-}else{
-
-pass.type="password";
+    pass.type =
+        pass.type === "password"
+        ? "text"
+        : "password";
 
 }
 
-}
 </script>
 
 </body>
