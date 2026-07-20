@@ -141,3 +141,16 @@ window.editAnime = function(id){
     window.location.href = `admin.html?edit=${id}`;
 
 }
+
+window.editAnime = function(id){
+
+    window.location.href = `admin.html?edit=${id}`;
+
+}
+document.getElementById("logoutBtn").onclick = async () => {
+
+    await signOut(auth);
+
+    window.location.href = "login.html";
+
+};
