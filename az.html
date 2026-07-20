@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>A-Z Anime</title>
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+<div id="overlay" onclick="closeMenu()"></div>
+
+<div id="sidebar">
+
+<div class="close" onclick="closeMenu()">
+✖
+</div>
+
+<h2>AnimeVerse</h2>
+<a href="index.html">🏠 Home</a>
+
+<a href="#trending">⭐ Trending</a>
+
+<a href="category.html?type=latest">🆕 Latest</a>
+
+<a href="category.html?type=movies">🎬 Movies</a>
+
+<a href="az.html">🔤 A - Z</a>
+
+<a href="category.html?type=ongoing">📺 Ongoing</a>
+
+<a href="category.html?type=completed">✅ Completed</a>
+
+<a href="https://t.me/animeverse0812" target="_blank">📢 Telegram</a>
+
+<a href="https://www.instagram.com/_animeverse0812/" target="_blank">📷 Instagram</a>
+
+<a href="mailto:vashutyagi9528@gmail.com?subject=AnimeVerse Support">📞 Contact</a>
+
+</div>
+
+<div class="background"></div>
+
+<header>
+
+<div class="left">
+
+<div class="menu-btn" onclick="openMenu()">
+☰
+</div>
+
+<div class="logo">
+<i class="fa-solid fa-dragon"></i>
+AnimeVerse
+</div>
+
+</div>
+
+<div class="search">
+
+<div class="search-box">
+
+    <input
+        id="searchBox"
+        type="text"
+        placeholder="Search Anime..."
+        autocomplete="off">
+
+    <div id="searchResults"></div>
+
+</div>
+
+<button>
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+
+<div class="login">
+
+<button onclick="window.location.href='index.html'">
+🏠 Home
+</button>
+
+</div>
+</header>
+
+<nav>
+
+<a href="category.html?type=home">Home</a>
+<a href="category.html?type=latest">Latest</a>
+<a href="category.html?type=movies">Movies</a>
+<a href="az.html">🔤 A - Z</a>
+<a href="category.html?type=ongoing">Ongoing</a>
+<a href="category.html?type=completed">Completed</a>
+
+</nav>
+<section class="title">
+
+    <h2>🔤 Browse Anime A - Z</h2>
+
+</section>
+
+<section id="letters" class="letters">
+
+</section>
+
+<section id="anime-container" class="cards">
+
+</section>
+<script type="module" src="script.js"></script>
+
+<script type="module" src="az.js"></script>
+</body>
+
+</html>

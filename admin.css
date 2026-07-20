@@ -1,0 +1,181 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#0d1117;
+    color:white;
+    padding:40px;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+    color:#ff3d4f;
+}
+
+.card{
+    background:#161b22;
+    padding:25px;
+    border-radius:15px;
+    border:1px solid #30363d;
+}
+
+h2{
+    margin-bottom:20px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    background:#21262d;
+    color:white;
+    font-size:16px;
+}
+
+textarea{
+    resize:vertical;
+    min-height:120px;
+}
+
+label{
+    display:block;
+    margin-top:20px;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#ff3d4f;
+    color:white;
+    cursor:pointer;
+    font-size:17px;
+    transition:.3s;
+}
+
+button:hover{
+    background:#ff1f35;
+}
+
+.pack{
+    background:#0d1117;
+    border:1px solid #30363d;
+    padding:20px;
+    border-radius:12px;
+    margin-top:20px;
+}
+
+.pack h3{
+    color:#58a6ff;
+    margin-bottom:15px;
+}
+
+.episode{
+    background:#21262d;
+    padding:15px;
+    border-radius:10px;
+    margin-top:12px;
+}
+
+.episode h4{
+    margin-bottom:10px;
+}
+
+hr{
+    margin:20px 0;
+    border:1px solid #30363d;
+}
+.animeCard{
+
+display:flex;
+
+gap:20px;
+
+align-items:center;
+
+margin:20px 0;
+
+background:#222;
+
+padding:20px;
+
+border-radius:10px;
+
+}
+
+.animeCard img{
+
+border-radius:10px;
+
+}
+
+.editBtn{
+
+background:#2196f3;
+
+color:white;
+
+border:none;
+
+padding:10px 20px;
+
+cursor:pointer;
+
+margin-right:10px;
+
+border-radius:6px;
+
+}
+
+.deleteBtn{
+
+background:#ff3d4f;
+
+color:white;
+
+border:none;
+
+padding:10px 20px;
+
+cursor:pointer;
+
+border-radius:6px;
+
+}
+#searchBox{
+
+width:100%;
+
+padding:12px;
+
+margin:20px 0;
+
+font-size:18px;
+
+border-radius:8px;
+
+border:none;
+
+outline:none;
+
+}

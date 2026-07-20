@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - AnimeVerse</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#141827;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+background:#1d2235;
+padding:40px;
+border-radius:15px;
+width:350px;
+box-shadow:0 0 20px rgba(0,0,0,.4);
+}
+
+h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:none;
+border-radius:8px;
+font-size:16px;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#ff3d4f;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#2196f3;
+}
+
+a{
+display:block;
+text-align:center;
+margin-top:20px;
+color:#ffc107;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="box">
+
+<h2>AnimeVerse Login</h2>
+
+<input type="text" id="username" placeholder="Username">
+
+<div style="position:relative; margin-bottom:15px;">
+
+<input
+type="password"
+id="password"
+placeholder="Password"
+style="width:100%; padding:12px; border:none; border-radius:8px; box-sizing:border-box;">
+
+<span
+onclick="togglePassword()"
+style="position:absolute; right:15px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:20px;">
+👁️
+</span>
+
+</div>
+
+<button onclick="login()">Login</button>
+
+<a href="index.html">⬅ Back to Home</a>
+
+</div>
+
+<script>
+
+function login(){
+
+const username=document.getElementById("username").value;
+const password=document.getElementById("password").value;
+
+if(username==="admin" && password==="123456"){
+
+alert("Login Successful!");
+
+window.location.href="index.html";
+
+}else{
+
+alert("Wrong username or password!");
+
+}
+
+}
+function togglePassword(){
+
+const pass=document.getElementById("password");
+
+if(pass.type==="password"){
+
+pass.type="text";
+
+}else{
+
+pass.type="password";
+
+}
+
+}
+</script>
+
+</body>
+</html>

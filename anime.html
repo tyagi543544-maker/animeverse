@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Anime Details</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+
+background:#111827;
+color:white;
+
+}
+
+.header{
+
+height:70px;
+background:#1b2333;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:0 40px;
+
+}
+
+.logo{
+
+font-size:32px;
+
+font-weight:bold;
+
+color:#ffc107;
+
+}
+
+.back{
+
+background:#ff3d4f;
+
+color:white;
+
+padding:12px 25px;
+
+text-decoration:none;
+
+border-radius:8px;
+
+transition:.3s;
+
+}
+
+.back:hover{
+
+background:#2196f3;
+
+}
+
+.main{
+
+max-width:1400px;
+
+margin:50px auto;
+
+display:flex;
+
+gap:50px;
+
+padding:0 30px;
+
+align-items:flex-start;
+
+}
+
+.poster{
+
+width:340px;
+
+}
+
+.poster img{
+
+width:100%;
+
+border-radius:15px;
+
+box-shadow:0 0 20px rgba(0,0,0,.5);
+
+}
+
+.info{
+
+flex:1;
+
+}
+
+.info h1{
+
+font-size:48px;
+
+margin-bottom:20px;
+
+}
+
+.tag{
+
+display:inline-block;
+
+padding:8px 18px;
+
+background:#ff3d4f;
+
+border-radius:8px;
+
+margin-right:10px;
+
+margin-bottom:20px;
+
+}
+
+.description{
+
+font-size:18px;
+
+line-height:1.8;
+
+color:#ccc;
+
+margin-bottom:30px;
+
+}
+
+.download{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+}
+
+.btn{
+
+background:#2196f3;
+
+color:white;
+
+padding:15px 30px;
+
+text-decoration:none;
+
+border-radius:8px;
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+background:#ff3d4f;
+
+}
+
+.side{
+
+width:300px;
+
+background:#1b2333;
+
+padding:25px;
+
+border-radius:15px;
+
+}
+
+.side h3{
+
+margin-bottom:20px;
+
+color:#ffc107;
+
+}
+
+.side p{
+
+line-height:2;
+
+color:#ddd;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="logo">
+AnimeVerse
+</div>
+
+<a href="index.html" class="back">
+🏠 Home
+</a>
+
+</div>
+
+<div class="main">
+
+<div class="poster">
+
+<img id="poster" src="" alt="Anime Poster">
+
+</div>
+
+<div class="info">
+
+<h1 id="title"></h1>
+
+<div>
+
+<span class="tag">
+Hindi Dubbed
+</span>
+
+<span class="tag">
+1080P
+</span>
+
+<span class="tag" id="statusTag">
+Completed
+</span>
+
+</div>
+
+<p class="description" id="description"></p>
+
+<div id="downloadButtons" class="download"></div>
+
+</div>
+
+<div class="side">
+
+<h3>Information</h3>
+
+<p>
+
+<b>Status :</b>
+<span id="status"></span>
+
+<br><br>
+
+<b>Episodes :</b>
+<span id="episodes"></span>
+
+<br><br>
+
+<b>Genre :</b>
+<span id="genre"></span>
+
+<br><br>
+
+<b>Language :</b>
+Hindi Dubbed
+
+<br><br>
+
+<b>Quality :</b>
+1080P
+
+<br><br>
+
+<b>Studio :</b>
+AnimeVerse
+
+</p>
+
+</div>
+
+</div>
+
+<script type="module" src="anime.js"></script>
+
+</body>
+
+</html>

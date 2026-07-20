@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>AnimeVerse Admin</title>
+
+<link rel="stylesheet"
+href="admin.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AnimeVerse CMS</h1>
+
+<div class="card">
+
+<h2>Anime Details</h2>
+
+<input
+id="title"
+placeholder="Anime Title">
+
+<input
+id="genre"
+placeholder="Genre">
+
+<select id="type">
+
+<option value="Series">Series</option>
+
+<option value="Movie">Movie</option>
+
+</select>
+
+<select id="status">
+
+<option value="Ongoing">Ongoing</option>
+
+<option value="Completed">Completed</option>
+
+</select>
+<div id="seriesOptions">
+
+<input
+id="episodes"
+type="number"
+placeholder="Total Episodes">
+
+<input
+id="packSize"
+type="number"
+placeholder="Episodes Per Pack">
+
+<button
+type="button"
+id="generate">
+
+Generate Packs
+
+</button>
+
+<div id="packs"></div>
+
+</div>
+<div id="movieOptions" style="display:none;">
+
+<h2>Movie Qualities</h2>
+
+<input
+class="movieQuality"
+data-quality="480p"
+placeholder="480p Download Link">
+
+<input
+class="movieQuality"
+data-quality="720p"
+placeholder="720p Download Link">
+
+<input
+class="movieQuality"
+data-quality="1080p"
+placeholder="1080p Download Link">
+
+<input
+class="movieQuality"
+data-quality="4K"
+placeholder="4K Download Link">
+
+</div>
+
+
+<textarea
+id="description"
+placeholder="Description"></textarea>
+
+
+<h2>Languages</h2>
+
+<div id="languageContainer"></div>
+
+<input
+id="languageName"
+placeholder="Language Name">
+
+<button
+type="button"
+id="addLanguage">
+
+➕ Add Language
+
+</button>
+
+Poster URL
+
+</label>
+
+<input
+id="poster"
+placeholder="https://example.com/poster.jpg">
+
+<button
+id="publish">
+
+Publish Anime
+
+</button>
+
+</div>
+
+</div>
+
+<script
+type="module"
+src="admin.js">
+
+</script>
+
+</body>
+
+</html>
