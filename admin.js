@@ -727,3 +727,10 @@ document.getElementById("publish").addEventListener("click", async () => {
     }
 
 });
+document.getElementById("logoutBtn").onclick = async () => {
+
+    await signOut(auth);
+
+    window.location.href = "login.html";
+
+};
