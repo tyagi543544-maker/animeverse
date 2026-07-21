@@ -709,7 +709,9 @@ btn.innerHTML = '<span class="loader"></span>Updating...';
                 doc(db, "animes", editId),
                 anime
             );
+btn.disabled = false;
 
+btn.innerHTML = "✅ Update Anime";
             alert("Anime Updated Successfully!");
 
         } else {
