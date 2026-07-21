@@ -426,7 +426,7 @@ loadForEdit();
 // ==========================
 
 document.getElementById("publish").addEventListener("click", async () => {
-const btn = document.getElementById("publishBtn");
+const btn = document.getElementById("publish");
 btn.disabled = true;
 
 btn.innerHTML = '<span class="loader"></span>Updating...';
