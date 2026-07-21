@@ -49,7 +49,17 @@ if (!language) {
 const pack = language.packs.find(
     p => p.pack === packNumber
 );
+if (pack.notice) {
 
+    downloadArea.innerHTML += `
+
+<div class="notice">
+📢 ${pack.notice}
+</div>
+
+`;
+
+}
 if (!pack) {
 
     downloadArea.innerHTML = "<h2>Pack Not Found</h2>";
