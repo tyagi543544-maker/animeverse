@@ -406,7 +406,8 @@ renderLanguages();
 
                 packDiv.querySelector(".zip1080").value =
                     pack.zip["1080p"].original;
-
+packDiv.querySelector(".packNotice").value =
+    pack.notice || "";
             });
 
         });
@@ -551,7 +552,8 @@ btn.innerHTML = '<span class="loader"></span>Updating...';
 
                     const zip1080 =
                         packDiv.querySelector(".zip1080").value.trim();
-
+const notice =
+    packDiv.querySelector(".packNotice").value.trim();
                     const episodes = [];
 
                     for (const input of episodeInputs) {
@@ -647,7 +649,7 @@ btn.innerHTML = '<span class="loader"></span>Updating...';
                                 episodeInputs.length - 1
                             ].dataset.episode
                         ),
-
+ notice,
                         episodes,
 
                         zip: {
