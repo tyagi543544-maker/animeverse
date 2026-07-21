@@ -237,7 +237,6 @@ placeholder="${language.name} Episode ${ep} Link">
 <hr>
 
 <h4>ZIP Downloads</h4>
-
 <input
 class="zip720"
 data-language="${language.name}"
@@ -247,6 +246,11 @@ placeholder="${language.name} 720P ZIP Link">
 class="zip1080"
 data-language="${language.name}"
 placeholder="${language.name} 1080P ZIP Link">
+
+textarea
+class="packNotice"
+placeholder="📢 Notice / Warning (Optional)"
+rows="3"></textarea>
 
 </div>
 
