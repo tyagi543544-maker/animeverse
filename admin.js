@@ -30,7 +30,6 @@ const type = document.getElementById("type");
 const seriesOptions = document.getElementById("seriesOptions");
 const movieOptions = document.getElementById("movieOptions");
 
-let languages = [];
 
 // ==========================
 // TYPE
@@ -59,6 +58,11 @@ updateType();
 // LANGUAGE SYSTEM
 // ==========================
 
+// ==========================
+// LANGUAGE SYSTEM
+// ==========================
+let languages = [];
+
 document.getElementById("addLanguage").onclick = () => {
 
     const name =
@@ -74,12 +78,9 @@ document.getElementById("addLanguage").onclick = () => {
     }
 
     languages.push({
-
-        name,
-        packs: []
-
+        name
     });
-console.log("Before Render:", languages);
+
     renderLanguages();
 
     document.getElementById("languageName").value = "";
@@ -91,7 +92,11 @@ function renderLanguages() {
     const container =
         document.getElementById("languageContainer");
 
+    const select =
+        document.getElementById("generateLanguage");
+
     container.innerHTML = "";
+    select.innerHTML = "";
 
     languages.forEach(language => {
 
@@ -111,6 +116,16 @@ data-name="${language.name}">
 </button>
 
 </div>
+
+`;
+
+        select.innerHTML += `
+
+<option value="${language.name}">
+
+${language.name}
+
+</option>
 
 `;
 
@@ -139,10 +154,17 @@ data-name="${language.name}">
 // GENERATE PACKS
 // ==========================
 
+// ==========================
+// GENERATE PACKS
+// ==========================
+
 function generatePacks() {
 
-    const totalEpisodes =
-        Number(document.getElementById("episodes").value);
+    const startEpisode =
+        Number(document.getElementById("startEpisode").value);
+
+    const endEpisode =
+        Number(document.getElementById("endEpisode").value);
 
     const packSize =
         Number(document.getElementById("packSize").value);
@@ -150,11 +172,9 @@ function generatePacks() {
     const packs =
         document.getElementById("packs");
 
-    packs.innerHTML = "";
+    if (!startEpisode || !endEpisode || !packSize) {
 
-    if (!totalEpisodes || !packSize) {
-
-        alert("Enter Total Episodes and Pack Size");
+        alert("Enter Start Episode, End Episode and Pack Size");
         return;
 
     }
@@ -166,9 +186,36 @@ function generatePacks() {
 
     }
 
-    languages.forEach(language => {
+    const selectedLanguage =
+        document.getElementById("generateLanguage").value;
 
-        packs.innerHTML += `
+    const language =
+        languages.find(
+            l => l.name === selectedLanguage
+        );
+
+    if (!language) return;
+
+    // Remove only this language block
+    const old =
+        packs.querySelector(
+            `[data-language-block="${language.name}"]`
+        );
+
+    if (old) {
+        old.remove();
+    }
+
+    // Create language block
+    const languageBlock =
+        document.createElement("div");
+
+    languageBlock.setAttribute(
+        "data-language-block",
+        language.name
+    );
+
+   languageBlock.innerHTML = `
 
 <h2 class="languageTitle">
 
@@ -176,23 +223,37 @@ function generatePacks() {
 
 </h2>
 
+<div class="packControls">
+
+<button
+type="button"
+class="addPackBtn"
+data-language="${language.name}">
+
+➕ Add Pack
+
+</button>
+
+</div>
+
 `;
 
-        let packNumber = 1;
+    packs.appendChild(languageBlock);
 
-        for (
-            let start = 1;
-            start <= totalEpisodes;
-            start += packSize
-        ) {
+    let packNumber = 1;
 
-            const end =
-                Math.min(
-                    start + packSize - 1,
-                    totalEpisodes
-                );
+    for (
+        let start = startEpisode;
+        start <= endEpisode;
+        start += packSize
+    ) {
 
-            let html = `
+        const end = Math.min(
+            start + packSize - 1,
+            endEpisode
+        );
+
+        let html = `
 
 <div
 class="pack"
@@ -204,17 +265,25 @@ data-language="${language.name}">
 
 (Episodes ${start}-${end})
 
+<button
+type="button"
+class="deletePackBtn">
+
+🗑 Delete Pack
+
+</button>
+
 </h3>
 
 `;
 
-            for (
-                let ep = start;
-                ep <= end;
-                ep++
-            ) {
+        for (
+            let ep = start;
+            ep <= end;
+            ep++
+        ) {
 
-                html += `
+            html += `
 
 <div class="episode">
 
@@ -230,21 +299,20 @@ placeholder="${language.name} Episode ${ep} Link">
 
 `;
 
-            }
+        }
 
-            html += `
+        html += `
 
 <hr>
 
 <h4>ZIP Downloads</h4>
+
 <input
 class="zip720"
-data-language="${language.name}"
 placeholder="${language.name} 720P ZIP Link">
 
 <input
 class="zip1080"
-data-language="${language.name}"
 placeholder="${language.name} 1080P ZIP Link">
 
 <textarea
@@ -256,14 +324,54 @@ rows="3"></textarea>
 
 `;
 
-            packs.innerHTML += html;
+        languageBlock.innerHTML += html;
 
-            packNumber++;
+        packNumber++;
 
-        }
+    }
+document
+.querySelectorAll(".addPackBtn")
+.forEach(btn => {
 
-    });
+    btn.onclick = () => {
 
+      const language = btn.dataset.language;
+
+const start = Number(
+    prompt("Start Episode")
+);
+
+if (!start) return;
+
+const end = Number(
+    prompt("End Episode")
+);
+
+if (!end) return;
+
+createPack(
+    language,
+    start,
+    end
+);
+
+    };
+
+});
+document
+.querySelectorAll(".deletePackBtn")
+.forEach(btn => {
+
+    btn.onclick = () => {
+
+        if (!confirm("Delete this pack?"))
+            return;
+
+        btn.closest(".pack").remove();
+
+    };
+
+});
 }
 
 document
@@ -272,6 +380,178 @@ document
     "click",
     generatePacks
 );
+function createPack(
+    language,
+    start,
+    end
+){
+
+    const languageBlock =
+        document.querySelector(
+            `[data-language-block="${language}"]`
+        );
+
+    if(!languageBlock) return;
+
+    const form = document.createElement("div");
+
+    form.className = "newPackForm";
+
+    form.innerHTML = `
+
+<hr>
+
+<h3>➕ New Pack (${language})</h3>
+
+<label>Start Episode</label>
+
+<input
+type="number"
+class="newPackStart"
+value="${start}">
+
+<label>End Episode</label>
+
+<input
+type="number"
+class="newPackEnd"
+value="${end}">
+
+<br><br>
+
+<button
+type="button"
+class="createPackBtn">
+
+Create Pack
+
+</button>
+
+<button
+type="button"
+class="cancelPackBtn">
+
+Cancel
+
+</button>
+
+`;
+
+    languageBlock.appendChild(form);
+form.querySelector(".cancelPackBtn").onclick = () => {
+
+    form.remove();
+const newPack =
+    languageBlock.lastElementChild;
+
+newPack
+.querySelector(".deletePackBtn")
+.onclick = () => {
+
+    if (!confirm("Delete this pack?"))
+        return;
+
+    newPack.remove();
+
+};
+};
+
+form.querySelector(".createPackBtn").onclick = () => {
+
+    const start = Number(
+        form.querySelector(".newPackStart").value
+    );
+
+    const end = Number(
+        form.querySelector(".newPackEnd").value
+    );
+
+    if (!start || !end || end < start) {
+
+        alert("Invalid episode range");
+        return;
+
+    }
+
+   let packNumber =
+    languageBlock.querySelectorAll(".pack").length + 1;
+
+let html = `
+
+<div
+class="pack"
+data-language="${language}">
+
+<h3>
+
+📦 Pack ${packNumber}
+
+(Episodes ${start}-${end})
+
+<button
+type="button"
+class="deletePackBtn">
+
+🗑 Delete Pack
+
+</button>
+
+</h3>
+
+`;
+for (
+    let ep = start;
+    ep <= end;
+    ep++
+) {
+
+    html += `
+
+<div class="episode">
+
+<h4>Episode ${ep}</h4>
+
+<input
+class="episodeLink"
+data-language="${language}"
+data-episode="${ep}"
+placeholder="${language} Episode ${ep} Link">
+
+</div>
+
+`;
+
+}
+html += `
+
+<hr>
+
+<h4>ZIP Downloads</h4>
+
+<input
+class="zip720"
+placeholder="${language} 720P ZIP Link">
+
+<input
+class="zip1080"
+placeholder="${language} 1080P ZIP Link">
+
+<textarea
+class="packNotice"
+placeholder="📢 Notice / Warning (Optional)"
+rows="3"></textarea>
+
+</div>
+
+`;
+form.insertAdjacentHTML(
+    "beforebegin",
+    html
+);
+
+form.remove();
+};
+}
 // ==========================
 // LOAD FOR EDIT
 // ==========================
@@ -372,22 +652,35 @@ renderLanguages();
 
     if (anime.type === "Series") {
 
-        document.getElementById("episodes").value =
-            anime.totalEpisodes;
-
-        document.getElementById("packSize").value =
-            anime.packSize;
-
-        generatePacks();
-
         anime.languages.forEach(language => {
+
+    document.getElementById("generateLanguage").value =
+        language.name;
+
+    document.getElementById("packSize").value =
+        anime.packSize;
+
+    const firstPack = language.packs[0];
+    const lastPack =
+        language.packs[language.packs.length - 1];
+
+    document.getElementById("startEpisode").value =
+        firstPack.startEpisode;
+
+    document.getElementById("endEpisode").value =
+        lastPack.endEpisode;
+
+    generatePacks();
 
             language.packs.forEach(pack => {
 
-                const packDiv =
-                    document.querySelector(
-                        `.pack[data-language="${language.name}"]:nth-of-type(${pack.pack})`
-                    );
+                const languageBlock =
+    document.querySelector(
+        `[data-language-block="${language.name}"]`
+    );
+
+const packDiv =
+    languageBlock.querySelectorAll(".pack")[pack.pack - 1];
 
                 if (!packDiv) return;
 
@@ -428,7 +721,7 @@ loadForEdit();
 document.getElementById("publish").addEventListener("click", async () => {
 const btn = document.getElementById("publish");
 btn.disabled = true;
-
+btn.innerHTML = "Updating...";
 btn.innerHTML = '<span class="loader"></span>Updating...';
     try {
 
@@ -642,43 +935,43 @@ const notice =
 
                     packs.push({
 
-                        pack: p + 1,
+    pack: p + 1,
 
-                        startEpisode: Number(
-                            episodeInputs[0].dataset.episode
-                        ),
+    startEpisode: Number(
+        episodeInputs[0].dataset.episode
+    ),
 
-                        endEpisode: Number(
-                            episodeInputs[
-                                episodeInputs.length - 1
-                            ].dataset.episode
-                        ),
-                        
- notice,
-                        
-                        episodes,
+    endEpisode: Number(
+        episodeInputs[
+            episodeInputs.length - 1
+        ].dataset.episode
+    ),
 
-                        zip: {
+    notice,
 
-                            "720p": {
+    episodes,
 
-                                original: zip720,
+    zip: {
 
-                                shortUrl: zip720Short
+        "720p": {
 
-                            },
+            original: zip720,
 
-                            "1080p": {
+            shortUrl: zip720Short
 
-                                original: zip1080,
+        },
 
-                                shortUrl: zip1080Short
+        "1080p": {
 
-                            }
+            original: zip1080,
 
-                        }
+            shortUrl: zip1080Short
 
-                    });
+        }
+
+    }
+
+});
 
                 }
 
@@ -710,38 +1003,41 @@ const notice =
         // SAVE
         // ==========================
 
-        if (editId) {
+      if (editId) {
 
-            await updateDoc(
-                doc(db, "animes", editId),
-                anime
-            );
-            
-            alert("Anime Updated Successfully!");
+    await updateDoc(
+        doc(db, "animes", editId),
+        anime
+    );
 
-        } else {
+    alert("Anime Updated Successfully!");
 
-            await addDoc(
-                collection(db, "animes"),
-                anime
-            );
-btn.disabled = false;
-btn.innerHTML = "✅ Updated!";
+} else {
 
-setTimeout(() => {
-    btn.innerHTML = "Update Anime";
-}, 500);
-            alert("Anime Added Successfully!");
+    await addDoc(
+        collection(db, "animes"),
+        anime
+    );
 
-        }
+    alert("Anime Added Successfully!");
 
-    } catch (err) {
+}
 
-        console.error(err);
+} catch (err) {
 
-        alert("Something went wrong!");
+    console.error(err);
 
-    }
+    alert("Something went wrong!");
+
+} finally {
+
+    btn.disabled = false;
+
+    btn.innerHTML = editId
+        ? "✅ Update Anime"
+        : "✅ Publish Anime";
+
+}
 
 });
 document.getElementById("logoutBtn").onclick = async () => {
