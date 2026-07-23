@@ -659,6 +659,28 @@ renderLanguages();
 
     document.getElementById("packSize").value =
         anime.packSize;
+let maxEpisode = 0;
+
+anime.languages.forEach(lang => {
+
+    if (lang.packs.length > 0) {
+
+        const lastPack =
+            lang.packs[lang.packs.length - 1];
+
+        if (lastPack.endEpisode > maxEpisode) {
+
+            maxEpisode = lastPack.endEpisode;
+
+        }
+
+    }
+
+});
+
+document.getElementById("episodes").value =
+    maxEpisode;
+ if (language.packs.length > 0) {
 
     const firstPack = language.packs[0];
     const lastPack =
@@ -671,6 +693,8 @@ renderLanguages();
         lastPack.endEpisode;
 
     generatePacks();
+
+}
 
             language.packs.forEach(pack => {
 
